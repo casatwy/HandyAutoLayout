@@ -37,4 +37,10 @@
 - (NSArray *)constraintsFillHeight;
 - (NSArray *)constraintsFill;
 
+// assign
+- (NSArray *)constraintsAssignLeft;
+- (NSArray *)constraintsAssignRight;
+- (NSArray *)constraintsAssignTop;
+- (NSArray *)constraintsAssignBottom;
+
 @end

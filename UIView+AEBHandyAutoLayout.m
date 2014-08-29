@@ -99,4 +99,27 @@
     return [NSArray arrayWithArray:resultConstraints];
 }
 
+- (NSArray *)constraintsAssignLeft
+{
+    UIView *selfView = self;
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[selfView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(selfView)];
+}
+
+- (NSArray *)constraintsAssignRight
+{
+    UIView *selfView = self;
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"H:[selfView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(selfView)];
+}
+
+- (NSArray *)constraintsAssignTop
+{
+    UIView *selfView = self;
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[selfView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(selfView)];
+}
+
+- (NSArray *)constraintsAssignBottom
+{
+    UIView *selfView = self;
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"V:[selfView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(selfView)];
+}
 @end
