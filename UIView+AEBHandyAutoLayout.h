@@ -28,6 +28,11 @@
 - (NSArray *)constraintsLeft:(CGFloat)left FromView:(UIView *)view;
 - (NSArray *)constraintsRight:(CGFloat)right FromView:(UIView *)view;
 
+- (NSArray *)constraintsTopInContainer:(CGFloat)top;
+- (NSArray *)constraintsBottomInContainer:(CGFloat)bottom;
+- (NSArray *)constraintsLeftInContainer:(CGFloat)left;
+- (NSArray *)constraintsRightInContainer:(CGFloat)right;
+
 // size
 - (NSArray *)constraintsSize:(CGSize)size;
 - (NSArray *)constraintsSizeEqualToView:(UIView *)view;
