@@ -49,13 +49,13 @@
 - (NSArray *)constraintsBottom:(CGFloat)bottom FromView:(UIView *)view
 {
     UIView *selfView = self;
-    return [NSLayoutConstraint constraintsWithVisualFormat:@"V:[selfView]-(bottom)-[view]" options:0 metrics:@{@"bottom":@(bottom)} views:NSDictionaryOfVariableBindings(view, selfView)];
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"V:[selfView]-(bottom)-[view]" options:0 metrics:@{@"bottom":@(bottom)} views:NSDictionaryOfVariableBindings(selfView, view)];
 }
 
 - (NSArray *)constraintsLeft:(CGFloat)left FromView:(UIView *)view
 {
     UIView *selfView = self;
-    return [NSLayoutConstraint constraintsWithVisualFormat:@"H:[selfView]-(left)-[view]" options:0 metrics:@{@"left":@(left)} views:NSDictionaryOfVariableBindings(view, selfView)];
+    return [NSLayoutConstraint constraintsWithVisualFormat:@"H:[selfView]-(left)-[view]" options:0 metrics:@{@"left":@(left)} views:NSDictionaryOfVariableBindings(selfView, view)];
 }
 
 - (NSArray *)constraintsRight:(CGFloat)right FromView:(UIView *)view
@@ -141,5 +141,23 @@
 {
     UIView *selfView = self;
     return [NSLayoutConstraint constraintsWithVisualFormat:@"H:[selfView]-(right)-|" options:0 metrics:@{@"right":@(right)} views:NSDictionaryOfVariableBindings(selfView)];
+}
+
+- (NSLayoutConstraint *)constraintTopEqualToView:(UIView *)view
+{
+    return [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+}
+
+- (NSLayoutConstraint *)constraintBottomEqualToView:(UIView *)view
+{
+    return [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f];
+}
+- (NSLayoutConstraint *)constraintLeftEqualToView:(UIView *)view
+{
+    return [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeLeft multiplier:1.0f constant:0.0f];
+}
+- (NSLayoutConstraint *)constraintRightEqualToView:(UIView *)view
+{
+    return [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeRight multiplier:1.0f constant:0.0f];
 }
 @end
