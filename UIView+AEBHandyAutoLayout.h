@@ -4,7 +4,7 @@
 //
 //  Created by casa on 14-8-25.
 //  Copyright (c) 2014年 me.andpay. All rights reserved.
-//
+//你的公钥不在我的列表里面
 
 #import <UIKit/UIKit.h>
 
