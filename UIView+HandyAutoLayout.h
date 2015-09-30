@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (AEBHandyAutoLayout)
+@protocol HandyAutoLayout <NSObject>
+
+- (void)addConstraints;
+
+@end
+
+@interface UIView (HandyAutoLayout)
 
 // height
 - (NSLayoutConstraint *)constraintHeight:(CGFloat)height;
