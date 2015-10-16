@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 casa. All rights reserved.
 //
 
-#import "UIView+LayoutMethods.h"
+#import "UIView+PickerLayoutMethods.h"
 
-@implementation UIView (LayoutMethods)
+@implementation UIView (PickerLayoutMethods)
 
 // coordinator getters
 - (CGFloat)height
@@ -69,6 +69,26 @@
 - (CGFloat)right
 {
     return self.frame.size.width + self.frame.origin.x;
+}
+
+- (CGFloat)left
+{
+    return self.frame.origin.x;
+}
+
+- (void)setLeft:(CGFloat)left
+{
+    self.x = left;
+}
+
+- (void)setTop:(CGFloat)top
+{
+    self.y = top;
+}
+
+- (CGFloat)top
+{
+    return self.frame.origin.y;
 }
 
 // height
@@ -133,7 +153,7 @@
     CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.y = newOrigin.y + top + view.height;
+    self.y = floorf(newOrigin.y + top + view.height);
 }
 
 - (void)bottom:(CGFloat)bottom FromView:(UIView *)view
@@ -161,6 +181,34 @@
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
     self.x = newOrigin.x + right + view.width;
+}
+
+- (void)topRatio:(CGFloat)top FromView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    CGFloat topRatio = top / screenType;
+    CGFloat topValue = topRatio * self.superview.width;
+    [self top:topValue FromView:view];
+}
+
+- (void)bottomRatio:(CGFloat)bottom FromView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    CGFloat bottomRatio = bottom / screenType;
+    CGFloat bottomValue = bottomRatio * self.superview.width;
+    [self bottom:bottomValue FromView:view];
+}
+
+- (void)leftRatio:(CGFloat)left FromView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    CGFloat leftRatio = left / screenType;
+    CGFloat leftValue = leftRatio * self.superview.width;
+    [self left:leftValue FromView:view];
+}
+
+- (void)rightRatio:(CGFloat)right FromView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    CGFloat rightRatio = right / screenType;
+    CGFloat rightValue = rightRatio * self.superview.width;
+    [self right:rightValue FromView:view];
 }
 
 - (void)topInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize
@@ -195,6 +243,34 @@
     } else {
         self.x = self.superview.width - self.width - right;
     }
+}
+
+- (void)topRatioInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    CGFloat topRatio = top / screenType;
+    CGFloat topValue = topRatio * self.superview.width;
+    [self topInContainer:topValue shouldResize:shouldResize];
+}
+
+- (void)bottomRatioInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    CGFloat bottomRatio = bottom / screenType;
+    CGFloat bottomValue = bottomRatio * self.superview.width;
+    [self bottomInContainer:bottomValue shouldResize:shouldResize];
+}
+
+- (void)leftRatioInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    CGFloat leftRatio = left / screenType;
+    CGFloat leftValue = leftRatio * self.superview.width;
+    [self leftInContainer:leftValue shouldResize:shouldResize];
+}
+
+- (void)rightRatioInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    CGFloat rightRatio = right / screenType;
+    CGFloat rightValue = rightRatio * self.superview.width;
+    [self rightInContainer:rightValue shouldResize:shouldResize];
 }
 
 - (void)topEqualToView:(UIView *)view

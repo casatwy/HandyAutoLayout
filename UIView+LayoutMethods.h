@@ -14,7 +14,11 @@
 #define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
 #define SCREEN_WITHOUT_STATUS_HEIGHT (SCREEN_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height)
 
-@interface UIView (LayoutMethods)
+typedef CGFloat UIScreenType;
+
+static UIScreenType UIScreenType_iPhone6 = 375.0f;
+
+@interface UIView (PickerLayoutMethods)
 
 // coordinator getters
 - (CGFloat)height;
@@ -25,11 +29,16 @@
 - (CGPoint)origin;
 - (CGFloat)centerX;
 - (CGFloat)centerY;
+
+- (CGFloat)left;
+- (CGFloat)top;
 - (CGFloat)bottom;
 - (CGFloat)right;
 
 - (void)setX:(CGFloat)x;
+- (void)setLeft:(CGFloat)left;
 - (void)setY:(CGFloat)y;
+- (void)setTop:(CGFloat)top;
 
 // height
 - (void)setHeight:(CGFloat)height;
@@ -51,10 +60,20 @@
 - (void)left:(CGFloat)left FromView:(UIView *)view;
 - (void)right:(CGFloat)right FromView:(UIView *)view;
 
+- (void)topRatio:(CGFloat)top FromView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)bottomRatio:(CGFloat)bottom FromView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)leftRatio:(CGFloat)left FromView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)rightRatio:(CGFloat)right FromView:(UIView *)view screenType:(UIScreenType)screenType;
+
 - (void)topInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize;
 - (void)bottomInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize;
 - (void)leftInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize;
 - (void)rightInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize;
+
+- (void)topRatioInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)bottomRatioInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)leftRatioInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)rightRatioInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
 
 - (void)topEqualToView:(UIView *)view;
 - (void)bottomEqualToView:(UIView *)view;
