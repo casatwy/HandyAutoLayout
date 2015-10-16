@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint HandyAutoLayout.podspec' to ensure this is a
+#  Be sure to run `pod spec lint HandyFrame.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "HandyAutoLayout"
+  s.name         = "HandyFrame"
   s.version      = "1.0.0"
-  s.summary      = "A view category for AutoLayout handy methods"
+  s.summary      = "handy methods for frame layout"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                    A handy methods for AutoLayout
+                        this is a handy methods for frame layout
                    DESC
 
   s.homepage     = "https://github.com/casatwy/HandyAutoLayout"
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "git@github.com:casatwy/HandyAutoLayout.git", :tag => s.version.to_s }
+  s.source       = { :git => "git@github.com:casatwy/HandyAutoLayout.git", :tag => s.verison.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "UIView+HandyAutoLayout.h", "UIView+HandyAutoLayout.m"
+  s.source_files  = "UIView+LayoutMethods.h", "UIView+LayoutMethods.m"
 
   # s.public_header_files = "Classes/**/*.h"
 
