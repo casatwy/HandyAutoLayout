@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 casa. All rights reserved.
 //
 
-#import "UIView+PickerLayoutMethods.h"
+#import "UIView+LayoutMethods.h"
 
-@implementation UIView (PickerLayoutMethods)
+@implementation UIView (LayoutMethods)
 
 // coordinator getters
 - (CGFloat)height
