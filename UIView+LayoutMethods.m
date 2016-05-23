@@ -146,7 +146,80 @@
     self.centerY = centerPoint.y;
 }
 
-// top, bottom, left, right
+- (void)centerEqualToView:(UIView *)view
+{
+    UIView *superView = view.superview ? view.superview : view;
+    CGPoint viewCenterPoint = [superView convertPoint:view.center toView:self.topSuperView];
+    CGPoint centerPoint = [self.topSuperView convertPoint:viewCenterPoint toView:self.superview];
+    self.centerX = centerPoint.x;
+    self.centerY = centerPoint.y;
+}
+
+// top, bottom, left, right -- Version 1.1.0
+- (void)fromTheTop:(CGFloat)distance ofView:(UIView *)view
+{
+    [self bottom:distance FromView:view];
+}
+
+- (void)fromTheBottom:(CGFloat)distance ofView:(UIView *)view
+{
+    [self top:distance FromView:view];
+}
+
+- (void)fromTheLeft:(CGFloat)distance ofView:(UIView *)view
+{
+    [self left:distance FromView:view];
+}
+
+- (void)fromTheRight:(CGFloat)distance ofView:(UIView *)view
+{
+    [self right:distance FromView:view];
+}
+
+
+- (void)fromTheRelativeTop:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    [self bottomRatio:distance FromView:view screenType:screenType];
+}
+
+- (void)fromTheRelativeBottom:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    [self topRatio:distance FromView:view screenType:screenType];
+}
+
+- (void)fromTheRelativeLeft:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    [self leftRatio:distance FromView:view screenType:screenType];
+}
+
+- (void)fromTheRelativeRight:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType
+{
+    [self rightRatio:distance FromView:view screenType:screenType];
+}
+
+
+- (void)relativeTopInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    [self topRatioInContainer:top shouldResize:shouldResize screenType:screenType];
+}
+
+- (void)relativeBottomInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    [self bottomRatioInContainer:bottom shouldResize:shouldResize screenType:screenType];
+}
+
+- (void)relativeLeftInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    [self leftRatioInContainer:left shouldResize:shouldResize screenType:screenType];
+}
+
+- (void)relativeRightInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
+{
+    [self rightRatioInContainer:right shouldResize:shouldResize screenType:screenType];
+}
+
+
+// top, bottom, left, right -- Old Version
 - (void)top:(CGFloat)top FromView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
@@ -324,11 +397,13 @@
 - (void)fillWidth
 {
     self.width = self.superview.width;
+    [self centerXEqualToView:self.superview];
 }
 
 - (void)fillHeight
 {
     self.height = self.superview.height;
+    [self centerYEqualToView:self.superview];
 }
 
 - (void)fill
