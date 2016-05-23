@@ -16,7 +16,9 @@
 
 typedef CGFloat UIScreenType;
 
+static UIScreenType UIScreenType_iPhone5 = 320.0f;
 static UIScreenType UIScreenType_iPhone6 = 375.0f;
+static UIScreenType UIScreenType_iPhone6P = 414.0f;
 
 @interface UIView (LayoutMethods)
 
@@ -53,8 +55,25 @@ static UIScreenType UIScreenType_iPhone6 = 375.0f;
 - (void)setCenterY:(CGFloat)centerY;
 - (void)centerXEqualToView:(UIView *)view;
 - (void)centerYEqualToView:(UIView *)view;
+- (void)centerEqualToView:(UIView *)view;
 
-// top, bottom, left, right
+// top, bottom, left, right -- Version 1.1.0
+- (void)fromTheTop:(CGFloat)distance ofView:(UIView *)view;
+- (void)fromTheBottom:(CGFloat)distance ofView:(UIView *)view;
+- (void)fromTheLeft:(CGFloat)distance ofView:(UIView *)view;
+- (void)fromTheRight:(CGFloat)distance ofView:(UIView *)view;
+
+- (void)fromTheRelativeTop:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)fromTheRelativeBottom:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)fromTheRelativeLeft:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType;
+- (void)fromTheRelativeRight:(CGFloat)distance ofView:(UIView *)view screenType:(UIScreenType)screenType;
+
+- (void)relativeTopInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)relativeBottomInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)relativeLeftInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+- (void)relativeRightInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType;
+
+// top, bottom, left, right -- Old Version
 - (void)top:(CGFloat)top FromView:(UIView *)view;
 - (void)bottom:(CGFloat)bottom FromView:(UIView *)view;
 - (void)left:(CGFloat)left FromView:(UIView *)view;
