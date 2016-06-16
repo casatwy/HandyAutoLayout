@@ -50,6 +50,11 @@ static UIScreenType UIScreenType_iPhone6P = 414.0f;
 - (void)setWidth:(CGFloat)width;
 - (void)widthEqualToView:(UIView *)view;
 
+// size
+- (void)setSize:(CGSize)size;
+- (void)setSize:(CGSize)size screenType:(UIScreenType)screenType;
+- (void)sizeEqualToView:(UIView *)view;
+
 // center
 - (void)setCenterX:(CGFloat)centerX;
 - (void)setCenterY:(CGFloat)centerY;
@@ -99,9 +104,7 @@ static UIScreenType UIScreenType_iPhone6P = 414.0f;
 - (void)leftEqualToView:(UIView *)view;
 - (void)rightEqualToView:(UIView *)view;
 
-// size
-- (void)setSize:(CGSize)size;
-- (void)sizeEqualToView:(UIView *)view;
+
 
 // imbueset
 - (void)fillWidth;

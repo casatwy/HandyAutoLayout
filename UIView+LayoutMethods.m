@@ -388,6 +388,12 @@
     self.frame = CGRectMake(self.x, self.y, size.width, size.height);
 }
 
+- (void)setSize:(CGSize)size screenType:(UIScreenType)screenType
+{
+    CGFloat ratio = SCREEN_WIDTH / screenType;
+    self.frame = CGRectMake(self.x, self.y, size.width * ratio, size.height * ratio);
+}
+
 - (void)sizeEqualToView:(UIView *)view
 {
     self.frame = CGRectMake(self.x, self.y, view.width, view.height);
