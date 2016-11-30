@@ -304,7 +304,7 @@
 - (void)leftInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.width = self.x - left + self.superview.width;
+        self.width = self.x - left + self.width;
     }
     self.x = left;
 }
