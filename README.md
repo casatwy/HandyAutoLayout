@@ -1,19 +1,19 @@
-#HandyAutoLayout
+# HandyAutoLayout
 
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-0.1.1-green.svg?style=flat)](https://cocoapods.org) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http:// opensource.org/licenses/MIT)
 
 `HandyAutoLayout` are handy categories for generate NSLayoutConstraint programatically.
 
-#New features
+# New features
 
-##Add new methods for 1.1.0
+## Add new methods for 1.1.0
 ```objective-c
 - (void)fromTheTop:(CGFloat)distance ofView:(UIView *)view;
 - (void)fromTheBottom:(CGFloat)distance ofView:(UIView *)view;
 - (void)fromTheLeft:(CGFloat)distance ofView:(UIView *)view;
 - (void)fromTheRight:(CGFloat)distance ofView:(UIView *)view;
 ```
-#Install
+# Install
 
 if you are using AutoLayout:
 
@@ -28,7 +28,7 @@ pod 'HandyFrame'
 ```
 
 
-#Examples
+# Examples
 
 for auto layout:
 
