@@ -12,6 +12,8 @@
 
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
+#define kHPercentage(a) (SCREEN_HEIGHT*((a)/667.00))
+#define kWPercentage(a) (SCREEN_WIDTH *((a)/375.00))
 #define SCREEN_WITHOUT_STATUS_HEIGHT (SCREEN_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height)
 
 typedef CGFloat UIScreenType;
@@ -23,41 +25,41 @@ static UIScreenType UIScreenType_iPhone6P = 414.0f;
 @interface UIView (LayoutMethods)
 
 // coordinator getters
-- (CGFloat)height;
-- (CGFloat)width;
-- (CGFloat)x;
-- (CGFloat)y;
-- (CGSize)size;
-- (CGPoint)origin;
-- (CGFloat)centerX;
-- (CGFloat)centerY;
+- (CGFloat)ct_height;
+- (CGFloat)ct_width;
+- (CGFloat)ct_x;
+- (CGFloat)ct_y;
+- (CGSize)ct_size;
+- (CGPoint)ct_origin;
+- (CGFloat)ct_centerX;
+- (CGFloat)ct_centerY;
 
-- (CGFloat)left;
-- (CGFloat)top;
-- (CGFloat)bottom;
-- (CGFloat)right;
+- (CGFloat)ct_left;
+- (CGFloat)ct_top;
+- (CGFloat)ct_bottom;
+- (CGFloat)ct_right;
 
-- (void)setX:(CGFloat)x;
-- (void)setLeft:(CGFloat)left;
-- (void)setY:(CGFloat)y;
-- (void)setTop:(CGFloat)top;
+- (void)setCt_x:(CGFloat)x;
+- (void)setCt_left:(CGFloat)left;
+- (void)setCt_y:(CGFloat)y;
+- (void)setCt_top:(CGFloat)top;
 
 // height
-- (void)setHeight:(CGFloat)height;
+- (void)setCt_height:(CGFloat)height;
 - (void)heightEqualToView:(UIView *)view;
 
 // width
-- (void)setWidth:(CGFloat)width;
+- (void)setCt_width:(CGFloat)width;
 - (void)widthEqualToView:(UIView *)view;
 
 // size
-- (void)setSize:(CGSize)size;
+- (void)setCt_size:(CGSize)size;
 - (void)setSize:(CGSize)size screenType:(UIScreenType)screenType;
 - (void)sizeEqualToView:(UIView *)view;
 
 // center
-- (void)setCenterX:(CGFloat)centerX;
-- (void)setCenterY:(CGFloat)centerY;
+- (void)setCt_centerX:(CGFloat)centerX;
+- (void)setCt_centerY:(CGFloat)centerY;
 - (void)centerXEqualToView:(UIView *)view;
 - (void)centerYEqualToView:(UIView *)view;
 - (void)centerEqualToView:(UIView *)view;
@@ -113,10 +115,4 @@ static UIScreenType UIScreenType_iPhone6P = 414.0f;
 
 - (UIView *)topSuperView;
 
-@end
-
-@protocol LayoutProtocol
-@required
-// put your layout code here
-- (void)calculateLayout;
 @end

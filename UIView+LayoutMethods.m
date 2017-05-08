@@ -11,121 +11,120 @@
 @implementation UIView (LayoutMethods)
 
 // coordinator getters
-- (CGFloat)height
+- (CGFloat)ct_height
 {
     return self.frame.size.height;
 }
 
-- (CGFloat)width
+- (CGFloat)ct_width
 {
     return self.frame.size.width;
 }
 
-- (CGFloat)x
+- (CGFloat)ct_x
 {
     return self.frame.origin.x;
 }
 
-- (void)setX:(CGFloat)x
-{
-    self.frame = CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-}
-
-- (void)setY:(CGFloat)y
-{
-    self.frame = CGRectMake(self.frame.origin.x, y, self.frame.size.width, self.frame.size.height);
-}
-
-- (CGFloat)y
+- (CGFloat)ct_y
 {
     return self.frame.origin.y;
 }
 
-- (CGSize)size
+- (CGSize)ct_size
 {
     return self.frame.size;
 }
 
-- (CGPoint)origin
+- (CGPoint)ct_origin
 {
     return self.frame.origin;
 }
 
-- (CGFloat)centerX
+- (CGFloat)ct_centerX
 {
     return self.center.x;
 }
 
-- (CGFloat)centerY
+- (CGFloat)ct_centerY
 {
     return self.center.y;
 }
 
-- (CGFloat)bottom
-{
-    return self.frame.size.height + self.frame.origin.y;
-}
-
-- (CGFloat)right
-{
-    return self.frame.size.width + self.frame.origin.x;
-}
-
-- (CGFloat)left
+- (CGFloat)ct_left
 {
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)left
-{
-    self.x = left;
-}
-
-- (void)setTop:(CGFloat)top
-{
-    self.y = top;
-}
-
-- (CGFloat)top
+- (CGFloat)ct_top
 {
     return self.frame.origin.y;
 }
 
-// height
-- (void)setHeight:(CGFloat)height
+- (CGFloat)ct_bottom
 {
-    CGRect newFrame = CGRectMake(self.x, self.y, self.width, height);
+    return self.frame.size.height + self.frame.origin.y;
+}
+
+- (CGFloat)ct_right
+{
+    return self.frame.size.width + self.frame.origin.x;
+}
+
+- (void)setCt_x:(CGFloat)x
+{
+    self.frame = CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+}
+
+- (void)setCt_y:(CGFloat)y
+{
+    self.frame = CGRectMake(self.frame.origin.x, y, self.frame.size.width, self.frame.size.height);
+}
+
+- (void)setCt_left:(CGFloat)left
+{
+    self.ct_x = left;
+}
+
+- (void)setCt_top:(CGFloat)top
+{
+    self.ct_y = top;
+}
+
+- (void)setCt_height:(CGFloat)height
+{
+    CGRect newFrame = CGRectMake(self.ct_x, self.ct_y, self.ct_width, height);
     self.frame = newFrame;
 }
 
 - (void)heightEqualToView:(UIView *)view
 {
-    self.height = view.height;
+    self.ct_height = view.ct_height;
 }
 
 // width
-- (void)setWidth:(CGFloat)width
+- (void)setCt_width:(CGFloat)width
 {
-    CGRect newFrame = CGRectMake(self.x, self.y, width, self.height);
+    CGRect newFrame = CGRectMake(self.ct_x, self.ct_y, width, self.ct_height);
     self.frame = newFrame;
 }
 
 - (void)widthEqualToView:(UIView *)view
 {
-    self.width = view.width;
+    self.ct_width = view.ct_width;
 }
 
 // center
-- (void)setCenterX:(CGFloat)centerX
+- (void)setCt_centerX:(CGFloat)centerX
 {
-    CGPoint center = CGPointMake(self.centerX, self.centerY);
+    CGPoint center = CGPointMake(self.ct_centerX, self.ct_centerY);
     center.x = centerX;
     self.center = center;
 }
 
-- (void)setCenterY:(CGFloat)centerY
+- (void)setCt_centerY:(CGFloat)centerY
 {
-    CGPoint center = CGPointMake(self.centerX, self.centerY);
+    CGPoint center = CGPointMake(self.ct_centerX, self.ct_centerY);
     center.y = centerY;
     self.center = center;
 }
@@ -135,7 +134,7 @@
     UIView *superView = view.superview ? view.superview : view;
     CGPoint viewCenterPoint = [superView convertPoint:view.center toView:self.topSuperView];
     CGPoint centerPoint = [self.topSuperView convertPoint:viewCenterPoint toView:self.superview];
-    self.centerX = centerPoint.x;
+    self.ct_centerX = centerPoint.x;
 }
 
 - (void)centerYEqualToView:(UIView *)view
@@ -143,7 +142,7 @@
     UIView *superView = view.superview ? view.superview : view;
     CGPoint viewCenterPoint = [superView convertPoint:view.center toView:self.topSuperView];
     CGPoint centerPoint = [self.topSuperView convertPoint:viewCenterPoint toView:self.superview];
-    self.centerY = centerPoint.y;
+    self.ct_centerY = centerPoint.y;
 }
 
 - (void)centerEqualToView:(UIView *)view
@@ -151,8 +150,8 @@
     UIView *superView = view.superview ? view.superview : view;
     CGPoint viewCenterPoint = [superView convertPoint:view.center toView:self.topSuperView];
     CGPoint centerPoint = [self.topSuperView convertPoint:viewCenterPoint toView:self.superview];
-    self.centerX = centerPoint.x;
-    self.centerY = centerPoint.y;
+    self.ct_centerX = centerPoint.x;
+    self.ct_centerY = centerPoint.y;
 }
 
 // top, bottom, left, right -- Version 1.1.0
@@ -223,198 +222,198 @@
 - (void)top:(CGFloat)top FromView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.y = floorf(newOrigin.y + top + view.height);
+    self.ct_y = floorf(newOrigin.y + top + view.ct_height);
 }
 
 - (void)bottom:(CGFloat)bottom FromView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.y = newOrigin.y - bottom - self.height;
+    self.ct_y = newOrigin.y - bottom - self.ct_height;
 }
 
 - (void)left:(CGFloat)left FromView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.x = newOrigin.x - left - self.width;
+    self.ct_x = newOrigin.x - left - self.ct_width;
 }
 
 - (void)right:(CGFloat)right FromView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.x = newOrigin.x + right + view.width;
+    self.ct_x = newOrigin.x + right + view.ct_width;
 }
 
 - (void)topRatio:(CGFloat)top FromView:(UIView *)view screenType:(UIScreenType)screenType
 {
     CGFloat topRatio = top / screenType;
-    CGFloat topValue = topRatio * self.superview.width;
+    CGFloat topValue = topRatio * self.superview.ct_width;
     [self top:topValue FromView:view];
 }
 
 - (void)bottomRatio:(CGFloat)bottom FromView:(UIView *)view screenType:(UIScreenType)screenType
 {
     CGFloat bottomRatio = bottom / screenType;
-    CGFloat bottomValue = bottomRatio * self.superview.width;
+    CGFloat bottomValue = bottomRatio * self.superview.ct_width;
     [self bottom:bottomValue FromView:view];
 }
 
 - (void)leftRatio:(CGFloat)left FromView:(UIView *)view screenType:(UIScreenType)screenType
 {
     CGFloat leftRatio = left / screenType;
-    CGFloat leftValue = leftRatio * self.superview.width;
+    CGFloat leftValue = leftRatio * self.superview.ct_width;
     [self left:leftValue FromView:view];
 }
 
 - (void)rightRatio:(CGFloat)right FromView:(UIView *)view screenType:(UIScreenType)screenType
 {
     CGFloat rightRatio = right / screenType;
-    CGFloat rightValue = rightRatio * self.superview.width;
+    CGFloat rightValue = rightRatio * self.superview.ct_width;
     [self right:rightValue FromView:view];
 }
 
 - (void)topInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.height = self.y - top + self.height;
+        self.ct_height = self.ct_y - top + self.ct_height;
     }
-    self.y = top;
+    self.ct_y = top;
 }
 
 - (void)bottomInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.height = self.superview.height - bottom - self.y;
+        self.ct_height = self.superview.ct_height - bottom - self.ct_y;
     } else {
-        self.y = self.superview.height - self.height - bottom;
+        self.ct_y = self.superview.ct_height - self.ct_height - bottom;
     }
 }
 
 - (void)leftInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.width = self.x - left + self.width;
+        self.ct_width = self.ct_x - left + self.ct_width;
     }
-    self.x = left;
+    self.ct_x = left;
 }
 
 - (void)rightInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.width = self.superview.width - right - self.x;
+        self.ct_width = self.superview.ct_width - right - self.ct_x;
     } else {
-        self.x = self.superview.width - self.width - right;
+        self.ct_x = self.superview.ct_width - self.ct_width - right;
     }
 }
 
 - (void)topRatioInContainer:(CGFloat)top shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
 {
     CGFloat topRatio = top / screenType;
-    CGFloat topValue = topRatio * self.superview.width;
+    CGFloat topValue = topRatio * self.superview.ct_width;
     [self topInContainer:topValue shouldResize:shouldResize];
 }
 
 - (void)bottomRatioInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
 {
     CGFloat bottomRatio = bottom / screenType;
-    CGFloat bottomValue = bottomRatio * self.superview.width;
+    CGFloat bottomValue = bottomRatio * self.superview.ct_width;
     [self bottomInContainer:bottomValue shouldResize:shouldResize];
 }
 
 - (void)leftRatioInContainer:(CGFloat)left shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
 {
     CGFloat leftRatio = left / screenType;
-    CGFloat leftValue = leftRatio * self.superview.width;
+    CGFloat leftValue = leftRatio * self.superview.ct_width;
     [self leftInContainer:leftValue shouldResize:shouldResize];
 }
 
 - (void)rightRatioInContainer:(CGFloat)right shouldResize:(BOOL)shouldResize screenType:(UIScreenType)screenType
 {
     CGFloat rightRatio = right / screenType;
-    CGFloat rightValue = rightRatio * self.superview.width;
+    CGFloat rightValue = rightRatio * self.superview.ct_width;
     [self rightInContainer:rightValue shouldResize:shouldResize];
 }
 
 - (void)topEqualToView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.y = newOrigin.y;
+    self.ct_y = newOrigin.y;
 }
 
 - (void)bottomEqualToView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.y = newOrigin.y + view.height - self.height;
+    self.ct_y = newOrigin.y + view.ct_height - self.ct_height;
 }
 
 - (void)leftEqualToView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.x = newOrigin.x;
+    self.ct_x = newOrigin.x;
 }
 
 - (void)rightEqualToView:(UIView *)view
 {
     UIView *superView = view.superview ? view.superview : view;
-    CGPoint viewOrigin = [superView convertPoint:view.origin toView:self.topSuperView];
+    CGPoint viewOrigin = [superView convertPoint:view.ct_origin toView:self.topSuperView];
     CGPoint newOrigin = [self.topSuperView convertPoint:viewOrigin toView:self.superview];
     
-    self.x = newOrigin.x + view.width - self.width;
+    self.ct_x = newOrigin.x + view.ct_width - self.ct_width;
 }
 
 // size
-- (void)setSize:(CGSize)size
+- (void)setCt_size:(CGSize)size
 {
-    self.frame = CGRectMake(self.x, self.y, size.width, size.height);
+    self.frame = CGRectMake(self.ct_x, self.ct_y, size.width, size.height);
 }
 
 - (void)setSize:(CGSize)size screenType:(UIScreenType)screenType
 {
     CGFloat ratio = SCREEN_WIDTH / screenType;
-    self.frame = CGRectMake(self.x, self.y, size.width * ratio, size.height * ratio);
+    self.frame = CGRectMake(self.ct_x, self.ct_y, size.width * ratio, size.height * ratio);
 }
 
 - (void)sizeEqualToView:(UIView *)view
 {
-    self.frame = CGRectMake(self.x, self.y, view.width, view.height);
+    self.frame = CGRectMake(self.ct_x, self.ct_y, view.ct_width, view.ct_height);
 }
 
 // imbueset
 - (void)fillWidth
 {
-    self.width = self.superview.width;
-    [self centerXEqualToView:self.superview];
+    self.ct_width = self.superview.ct_width;
+    self.ct_x = 0;
 }
 
 - (void)fillHeight
 {
-    self.height = self.superview.height;
-    [self centerYEqualToView:self.superview];
+    self.ct_height = self.superview.ct_height;
+    self.ct_y = 0;
 }
 
 - (void)fill
 {
-    self.frame = CGRectMake(0, 0, self.superview.width, self.superview.height);
+    self.frame = CGRectMake(0, 0, self.superview.ct_width, self.superview.ct_height);
 }
 
 - (UIView *)topSuperView
