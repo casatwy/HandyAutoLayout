@@ -434,7 +434,7 @@
 // iPhoneX adapt
 - (CGFloat)safeAreaBottomGap
 {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+    if (@available(iOS 11, *)) {
         return (SCREEN_HEIGHT - self.safeAreaLayoutGuide.layoutFrame.origin.y - self.safeAreaLayoutGuide.layoutFrame.size.height);
     } else {
         return 0;
@@ -443,7 +443,7 @@
 
 - (CGFloat)safeAreaTopGap
 {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+    if (@available(iOS 11, *)) {
         return self.safeAreaLayoutGuide.layoutFrame.origin.y;
     } else {
         return 0;
@@ -452,7 +452,7 @@
 
 - (CGFloat)safeAreaLeftGap
 {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+    if (@available(iOS 11, *)) {
         return self.safeAreaLayoutGuide.layoutFrame.origin.x;
     } else {
         return 0;
@@ -461,11 +461,11 @@
 
 - (CGFloat)safeAreaRightGap
 {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")) {
+	if (@available(iOS 11, *)) {
         return self.safeAreaLayoutGuide.layoutFrame.origin.x;
-    } else {
+	} else {
         return 0;
-    }
+	}
 }
 
 @end
