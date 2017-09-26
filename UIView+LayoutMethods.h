@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 #define SCREEN_HEIGHT ([[UIScreen mainScreen]bounds].size.height)
+
 #define kHPercentage(a) (SCREEN_HEIGHT*((a)/667.00))
 #define kWPercentage(a) (SCREEN_WIDTH *((a)/375.00))
+
 #define SCREEN_WITHOUT_STATUS_HEIGHT (SCREEN_HEIGHT - [[UIApplication sharedApplication] statusBarFrame].size.height)
 
 typedef CGFloat UIScreenType;
@@ -106,13 +112,17 @@ static UIScreenType UIScreenType_iPhone6P = 414.0f;
 - (void)leftEqualToView:(UIView *)view;
 - (void)rightEqualToView:(UIView *)view;
 
-
-
 // imbueset
 - (void)fillWidth;
 - (void)fillHeight;
 - (void)fill;
 
 - (UIView *)topSuperView;
+
+// iPhoneX adapt
+- (CGFloat)safeAreaBottomGap;
+- (CGFloat)safeAreaTopGap;
+- (CGFloat)safeAreaLeftGap;
+- (CGFloat)safeAreaRightGap;
 
 @end
