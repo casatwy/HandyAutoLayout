@@ -294,9 +294,9 @@
 - (void)bottomInContainer:(CGFloat)bottom shouldResize:(BOOL)shouldResize
 {
     if (shouldResize) {
-        self.ct_height = self.superview.ct_height - bottom - self.ct_y;
+        self.ct_height = self.superview.ct_height - bottom - self.ct_y - self.safeAreaBottomGap;
     } else {
-        self.ct_y = self.superview.ct_height - self.ct_height - bottom;
+        self.ct_y = self.superview.ct_height - self.ct_height - bottom - self.safeAreaBottomGap;
     }
 }
 
@@ -435,7 +435,7 @@
 - (CGFloat)safeAreaBottomGap
 {
     if (@available(iOS 11, *)) {
-        return (SCREEN_HEIGHT - self.safeAreaLayoutGuide.layoutFrame.origin.y - self.safeAreaLayoutGuide.layoutFrame.size.height);
+        return (self.ct_height - self.safeAreaLayoutGuide.layoutFrame.origin.y - self.safeAreaLayoutGuide.layoutFrame.size.height);
     } else {
         return 0;
     }
