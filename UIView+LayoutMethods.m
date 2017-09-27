@@ -8,6 +8,11 @@
 
 #import "UIView+LayoutMethods.h"
 
+static void *kUIViewLayoutMethodPropertyBottomGap = &kUIViewLayoutMethodPropertyBottomGap;
+static void *kUIViewLayoutMethodPropertyTopGap = &kUIViewLayoutMethodPropertyTopGap;
+static void *kUIViewLayoutMethodPropertyLeftGap = &kUIViewLayoutMethodPropertyLeftGap;
+static void *kUIViewLayoutMethodPropertyRightGap = &kUIViewLayoutMethodPropertyRightGap;
+
 @implementation UIView (LayoutMethods)
 
 // coordinator getters
@@ -434,38 +439,58 @@
 // iPhoneX adapt
 - (CGFloat)safeAreaBottomGap
 {
-    if (@available(iOS 11, *)) {
-        return (self.ct_height - self.safeAreaLayoutGuide.layoutFrame.origin.y - self.safeAreaLayoutGuide.layoutFrame.size.height);
-    } else {
-        return 0;
+    NSNumber *gap = objc_getAssociatedObject(self, kUIViewLayoutMethodPropertyBottomGap);
+    if (gap == nil) {
+        if (@available(iOS 11, *)) {
+            gap = @((self.superview.ct_height - self.superview.safeAreaLayoutGuide.layoutFrame.origin.y - self.superview.safeAreaLayoutGuide.layoutFrame.size.height));
+        } else {
+            gap = @(0);
+        }
+        objc_setAssociatedObject(self, kUIViewLayoutMethodPropertyBottomGap, gap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    return gap.floatValue;
 }
 
 - (CGFloat)safeAreaTopGap
 {
-    if (@available(iOS 11, *)) {
-        return self.safeAreaLayoutGuide.layoutFrame.origin.y;
-    } else {
-        return 0;
+    NSNumber *gap = objc_getAssociatedObject(self, kUIViewLayoutMethodPropertyTopGap);
+    if (gap == nil) {
+        if (@available(iOS 11, *)) {
+            gap = @(self.superview.safeAreaLayoutGuide.layoutFrame.origin.y);
+        } else {
+            gap = @(0);
+        }
+        objc_setAssociatedObject(self, kUIViewLayoutMethodPropertyTopGap, gap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    return gap.floatValue;
 }
 
 - (CGFloat)safeAreaLeftGap
 {
-    if (@available(iOS 11, *)) {
-        return self.safeAreaLayoutGuide.layoutFrame.origin.x;
-    } else {
-        return 0;
+    NSNumber *gap = objc_getAssociatedObject(self, kUIViewLayoutMethodPropertyLeftGap);
+    if (gap == nil) {
+        if (@available(iOS 11, *)) {
+            gap = @(self.superview.safeAreaLayoutGuide.layoutFrame.origin.x);
+        } else {
+            gap = @(0);
+        }
+        objc_setAssociatedObject(self, kUIViewLayoutMethodPropertyLeftGap, gap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    return gap.floatValue;
 }
 
 - (CGFloat)safeAreaRightGap
 {
-	if (@available(iOS 11, *)) {
-        return self.safeAreaLayoutGuide.layoutFrame.origin.x;
-	} else {
-        return 0;
-	}
+    NSNumber *gap = objc_getAssociatedObject(self, kUIViewLayoutMethodPropertyRightGap);
+    if (gap == nil) {
+        if (@available(iOS 11, *)) {
+            gap = @(self.superview.safeAreaLayoutGuide.layoutFrame.origin.x);
+        } else {
+            gap = @(0);
+        }
+        objc_setAssociatedObject(self, kUIViewLayoutMethodPropertyRightGap, gap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return gap.floatValue;
 }
 
 @end
