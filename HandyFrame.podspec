@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "HandyFrame"
-  s.version      = "1.1.7"
+  s.version      = "1.1.8"
   s.summary      = "handy methods for frame layout"
 
   # This description is used to generate tags and improve search results.
