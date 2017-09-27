@@ -7,6 +7,7 @@
 //
 
 #import "UIView+LayoutMethods.h"
+#import <objc/runtime.h>
 
 static void *kUIViewLayoutMethodPropertyBottomGap = &kUIViewLayoutMethodPropertyBottomGap;
 static void *kUIViewLayoutMethodPropertyTopGap = &kUIViewLayoutMethodPropertyTopGap;

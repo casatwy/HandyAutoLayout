@@ -7,7 +7,6 @@
 //
 
 #import "UIView+HandyAutoLayout.h"
-#import <objc/runtime.h>
 
 @implementation UIView (HandyAutoLayout)
 
