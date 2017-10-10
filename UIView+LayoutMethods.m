@@ -443,7 +443,11 @@ static void *kUIViewLayoutMethodPropertyRightGap = &kUIViewLayoutMethodPropertyR
     NSNumber *gap = objc_getAssociatedObject(self, kUIViewLayoutMethodPropertyBottomGap);
     if (gap == nil) {
         if (@available(iOS 11, *)) {
-            gap = @((self.superview.ct_height - self.superview.safeAreaLayoutGuide.layoutFrame.origin.y - self.superview.safeAreaLayoutGuide.layoutFrame.size.height));
+			if (self.superview.safeAreaLayoutGuide.layoutFrame.size.height > 0) {
+                gap = @((self.superview.ct_height - self.superview.safeAreaLayoutGuide.layoutFrame.origin.y - self.superview.safeAreaLayoutGuide.layoutFrame.size.height));
+            } else {
+                gap = nil;
+            }
         } else {
             gap = @(0);
         }
