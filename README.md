@@ -1,6 +1,6 @@
 # HandyAutoLayout
 
-[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-0.1.1-green.svg?style=flat)](https://cocoapods.org) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http:// opensource.org/licenses/MIT)
+[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-0.1.1-green.svg?style=flat)](https://cocoapods.org) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 `HandyAutoLayout` are handy categories for generate NSLayoutConstraint programatically.
 
